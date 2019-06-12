@@ -3,7 +3,6 @@ import static java.lang.System.out;
 
 class Key{
     public static void main(String args[]){
-        Key a = new Key("salut");
         out.println(a.name);
 		HashMap<Key, String> map = new HashMap<>();
         map.put(new Key("foo"), "FOO");
@@ -15,5 +14,25 @@ class Key{
 
     Key(String text){
         this.name = text;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null){
+            return false;
+        }
+
+        if(!(obj instanceof Key)){
+            return false;
+        }
+
+        Key other = (Key) obj;
+
+        return this.name !=null ? this.name.equals(other.name) : false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.length();
     }
 }
